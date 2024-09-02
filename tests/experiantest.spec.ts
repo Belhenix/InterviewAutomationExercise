@@ -32,15 +32,15 @@ test('submit tax credit survey form', async ({ page }) => {
   await expect(page.getByText('Yes or No')).toBeVisible();
 
   // No for SNAP food stamps
-  await page.locator('xpath=//div[@data-question-id-text="SnapCombinedRecent"]//input[@text="No"]/..').click();
-  // No for TANF welfare
-  await page.locator('xpath=//div[@data-question-id-text="TanfCombinedRecent"]//input[@text="No"]/..').click();
+  await page.locator('css=.survey-question-container > .row', { has: page.getByText('SNAP') }).locator('label', { has: page.getByLabel('No') }).click();
+  // No for TANF welfare  
+  await page.locator('css=.survey-question-container > .row', { has: page.getByText('TANF') }).locator('label', { has: page.getByLabel('No') }).click();
   // No for veteran
-  await page.locator('xpath=//div[@data-question-id-text="USArmedForces"]//input[@text="No"]/..').click();
+  await page.locator('css=.survey-question-container > .row', { has: page.getByText('veteran') }).locator('label', { has: page.getByLabel('No') }).click();
   // No for disability
-  await page.locator('xpath=//div[@data-question-id-text="DisabledPerson"]//input[@text="No"]/..').click();
+  await page.locator('css=.survey-question-container > .row', { has: page.getByText('disability') }).locator('label', { has: page.getByLabel('No') }).click();
   // No for unemployment benefits
-  await page.locator('xpath=//div[@data-question-id-text="LongTermUnemployed"]//input[@text="No"]/..').click();
+  await page.locator('css=.survey-question-container > .row', { has: page.getByText('unemployed') }).locator('label', { has: page.getByLabel('No') }).click();
 
   // Go to next page
   await page.locator('id=SurveyControl_SurveySubmit').click()
