@@ -39,6 +39,10 @@ test('submit tax credit survey form', async ({ page }) => {
   await page.locator('css=.survey-question-container > .row', { has: page.getByText('veteran') }).locator('label', { has: page.getByLabel('No') }).click();
   // No for disability
   await page.locator('css=.survey-question-container > .row', { has: page.getByText('disability') }).locator('label', { has: page.getByLabel('No') }).click();
+  // No for felony (if applicable)
+  if(await page.getByText('convicted').isVisible()) {
+    await page.locator('css=.survey-question-container > .row', { has: page.getByText('convicted') }).locator('label', { has: page.getByLabel('No') }).click();
+  }
   // No for unemployment benefits
   await page.locator('css=.survey-question-container > .row', { has: page.getByText('unemployed') }).locator('label', { has: page.getByLabel('No') }).click();
 
