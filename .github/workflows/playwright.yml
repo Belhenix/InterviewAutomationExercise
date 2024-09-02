@@ -18,7 +18,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Experian test
-      run: npx playwright test experiantext.spec
+      run: npx playwright test experiantest.spec
     - uses: actions/upload-artifact@v4
       if: always()
       with:
